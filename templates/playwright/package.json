@@ -1,0 +1,17 @@
+{
+  "name": "playwright",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test:e2e": "npx playwright test"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.38.2",
+    "@types/node": "^20.4.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.1.6"
+  }
+}

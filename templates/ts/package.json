@@ -1,0 +1,16 @@
+{
+  "name": "ts",
+  "version": "1.0.0",
+  "description": "Run this with:",
+  "main": "index.js",
+  "scripts": {
+    "code": "ts-node run.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.4.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.1.6"
+  }
+}
