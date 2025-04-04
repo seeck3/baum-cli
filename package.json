@@ -1,6 +1,6 @@
 {
   "name": "baum-cli",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "A CLI tool to scaffold JavaScript, TypeScript, and Playwright practice projects, and clone the BaumAcademy repository.",
   "bin": {
     "baum-cli": "./bin/baum-cli.js"
