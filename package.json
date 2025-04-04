@@ -1,6 +1,6 @@
 {
   "name": "baum-js-cli",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "bin": {
     "baum-js-cli": "./bin/baum-js-cli.js"
   },
