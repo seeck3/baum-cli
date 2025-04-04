@@ -87,9 +87,18 @@ if (command === 'init' && projectName) {
     try {
       execSync(`git clone ${repoUrl} ${cloneTarget}`, { stdio: 'inherit' });
       console.log(`✅ Repository cloned into ${cloneTarget}.`);
-      console.log(`📦 Installing dependencies in ${cloneTarget}...`);
-      execSync('npm install', { cwd: cloneTarget, stdio: 'inherit' });
-      console.log(`✅ Dependencies installed in ${cloneTarget}.`);
+  
+      // Install dependencies in the 'app' and 'server' subdirectories if they exist.
+      ['app', 'server'].forEach((subDir) => {
+        const subDirPath = path.join(cloneTarget, subDir);
+        if (fs.existsSync(subDirPath)) {
+          console.log(`📦 Installing dependencies in ${subDirPath}...`);
+          execSync('npm install', { cwd: subDirPath, stdio: 'inherit' });
+          console.log(`✅ Dependencies installed in ${subDirPath}.`);
+        } else {
+          console.warn(`⚠️ Subdirectory "${subDir}" not found in ${cloneTarget}.`);
+        }
+      });
     } catch (error) {
       console.error('❌ Error during cloning or installation:', error);
       process.exit(1);
