@@ -16,12 +16,6 @@ jobs:
         with:
           node-version: 20
           registry-url: https://registry.npmjs.org/
-      - name: Auto bump version
-        run: |
-          # Bump the version (patch version). The commit message includes [skip ci] to prevent triggering another workflow.
-          npm version patch -m "chore(release): %s [skip ci]"
-          # Push the commit and tag back to GitHub
-          git push origin HEAD --follow-tags
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
