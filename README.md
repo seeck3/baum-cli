@@ -35,6 +35,6 @@ npx baum-js-cli@latest init my-baum-academy-app --baum-academy
 
 ### Install All of Modules
 ```bash
-npx baum-js-cli@latest init my-baum-academy-app --all
+npx baum-js-cli@latest init my-all-app --all
 
 ```
