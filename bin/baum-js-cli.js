@@ -9,10 +9,19 @@ const command = args[0];
 const projectName = args[1];
 const options = args.slice(2);
 
-// If no options are specified, default to JavaScript practice.
-const includeJS = options.includes('--js') || (!options.includes('--ts') && !options.includes('--playwright'));
-const includeTS = options.includes('--ts');
-const includePlaywright = options.includes('--playwright');
+// If --all is provided, enable every module.
+const includeAll = options.includes('--all');
+
+// Determine which modules to include.
+// If --all is passed, all values are true.
+// For JS, we also default to true if none of the other module flags are provided.
+const includeJS =
+  includeAll ||
+  options.includes('--js') ||
+  (!options.includes('--ts') && !options.includes('--playwright') && !options.includes('--baum-academy'));
+const includeTS = includeAll || options.includes('--ts');
+const includePlaywright = includeAll || options.includes('--playwright');
+const cloneBaumAcademy = includeAll || options.includes('--baum-academy');
 
 if (command === 'init' && projectName) {
   const targetDir = path.resolve(process.cwd(), projectName);
@@ -65,6 +74,26 @@ if (command === 'init' && projectName) {
     // Run npm i in playwright-practice to install dependencies
     console.log(`📦 Installing dependencies in playwright-practice...`);
     execSync('npm i', { cwd: pwTarget, stdio: 'inherit' });
+  }
+
+  if (cloneBaumAcademy) {
+    const repoUrl = 'https://github.com/baumacademy/BaumAcademy.git';
+    const cloneTarget = path.join(targetDir, 'baum-academy');
+    if (fs.existsSync(cloneTarget)) {
+      console.error(`❌ Directory "baum-academy" already exists in ${projectName}.`);
+      process.exit(1);
+    }
+    console.log(`📥 Cloning ${repoUrl} into ${cloneTarget}...`);
+    try {
+      execSync(`git clone ${repoUrl} ${cloneTarget}`, { stdio: 'inherit' });
+      console.log(`✅ Repository cloned into ${cloneTarget}.`);
+      console.log(`📦 Installing dependencies in ${cloneTarget}...`);
+      execSync('npm install', { cwd: cloneTarget, stdio: 'inherit' });
+      console.log(`✅ Dependencies installed in ${cloneTarget}.`);
+    } catch (error) {
+      console.error('❌ Error during cloning or installation:', error);
+      process.exit(1);
+    }
   }
 
   console.log(`✅ Project "${projectName}" created with selected modules.`);

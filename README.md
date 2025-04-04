@@ -26,3 +26,15 @@ npx baum-js-cli@latest init my-ts-app --ts
 npx baum-js-cli@latest init my-playwright-app --ts --playwright
 
 ```
+
+### Clone BaumAcedemy WebApp
+```bash
+npx baum-js-cli@latest init my-baum-academy-app --baum-academy
+
+```
+
+### Install All of Modules
+```bash
+npx baum-js-cli@latest init my-baum-academy-app --all
+
+```
