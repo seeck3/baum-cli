@@ -1,6 +1,11 @@
 {
   "name": "baum-js-cli",
   "version": "1.0.0",
+  "description": "A CLI tool to scaffold JavaScript, TypeScript, and Playwright practice projects, and clone the BaumAcademy repository.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seeck3/baum-js-cli.git"
+  },
   "bin": {
     "baum-js-cli": "./bin/baum-js-cli.js"
   },
@@ -13,8 +18,15 @@
     "scaffold",
     "javascript",
     "typescript",
-    "playwright"
+    "playwright",
+    "baumacademy"
   ],
-  "author": "Your Name",
-  "license": "MIT"
+  "author": "seeck3",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14"
+  },
+  "devDependencies": {
+    "semantic-release": "^20.0.0"
+  }
 }
